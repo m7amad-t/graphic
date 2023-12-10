@@ -1,0 +1,176 @@
+import javax.media.opengl.*;
+import javax.media.opengl.awt.*;
+//import com.sun.opengl.util.*;
+import com.jogamp.opengl.util.Animator;
+import javax.media.opengl.glu.*;
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
+
+public class  m7amad extends JFrame implements GLEventListener {
+
+  GLCanvas canvas;
+  Animator an;
+
+  public m7amad()
+  {
+    super("7ama");
+     canvas=new GLCanvas();
+     add(canvas);
+     canvas.addGLEventListener(this);
+     an=new Animator(canvas);
+     canvas.requestFocus();
+     an.start();
+     setSize(600,600);
+     setVisible(true);
+     setLocationRelativeTo(null);
+     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+  }
+
+  public void init(GLAutoDrawable arg0) {
+    // TODO Auto-generated method stub
+    GL2 gl=arg0.getGL().getGL2();
+    GLU glu=new GLU();
+    gl.glClearColor(0.0f,0.0f,0.0f,0.0f);
+    gl.glMatrixMode(GL2.GL_PROJECTION);
+    glu.gluOrtho2D(-300, 300, -300, 300);
+    gl.glMatrixMode(GL2.GL_MODELVIEW);
+
+  }
+
+  public void display(GLAutoDrawable arg0) {
+    // TODO Auto-generated method stub
+    GL2 gl=arg0.getGL().getGL2();
+    gl.glClear(GL2.GL_COLOR_BUFFER_BIT);
+    
+    gl.glLineWidth(4f);
+    
+    //road-stipple-line
+    gl.glColor3f(1,1,0);
+    
+    gl.glEnable(GL2.GL_LINE_STIPPLE);
+    gl.glLineStipple(1, (short)0110);
+    
+    gl.glBegin(GL2.GL_LINES);
+    gl.glVertex2i(-300, -80);
+    gl.glVertex2i(300, -80);
+    
+    gl.glEnd();
+    gl.glDisable(GL2.GL_LINE_STIPPLE);
+    
+    //top-bottom-of-the-road
+    
+    
+    gl.glBegin(GL2.GL_LINES);
+    gl.glVertex2i(-300, -125);
+    gl.glVertex2i(300, -125);
+    gl.glVertex2i(-300, -35);
+    gl.glVertex2i(300, -35);
+    //gl.glEnd();
+    
+    //House
+    gl.glColor3f(1,1,1);
+    //gl.glBegin(GL2.GL_LINES);
+    
+    //bottom
+    gl.glVertex2i(2, -30);
+    gl.glVertex2i(-252, -30);
+    
+    //bottom-vertical-right
+    gl.glVertex2i(0,12);
+    gl.glVertex2i(0, -34);
+    
+    //bottom-vertical-left
+    gl.glVertex2i(-250, 12);
+    gl.glVertex2i(-250, -32);
+    
+    
+    //2Bottom-horizontal-right
+    gl.glVertex2i(0,10);
+    gl.glVertex2i(-37, 10);
+    
+    //2Bottom-horizontal-left
+    gl.glVertex2i(-250, 10);
+    gl.glVertex2i(-223, 10);
+    
+    //left-vertical-line
+    gl.glVertex2i(-35,152);
+    gl.glVertex2i(-35, 10);
+    
+    //right-vertical-line
+    gl.glVertex2i(-225, 121);
+    gl.glVertex2i(-225, 10);
+    
+    //top-left-1-corner
+    gl.glVertex2i(-225, 120);
+    gl.glVertex2i(-195, 140);
+    
+    //left-corner-v
+    // \ line
+    gl.glVertex2i(-195, 140);
+    gl.glVertex2i(-175, 126);
+    // | line
+    gl.glVertex2i(-175, 125);
+    gl.glVertex2i(-175, 161);
+    
+    //top-left-2-corner
+    gl.glVertex2i(-175, 160);
+    gl.glVertex2i(-120, 180);
+    
+    //top-right-corner
+    gl.glVertex2i(-120, 180);
+    gl.glVertex2i(-35,150);
+    
+    //door-frame
+    gl.glColor3f(1, 0, 0);
+    
+    // bottom-horizontal
+    gl.glVertex2i(-157, -30);
+    gl.glVertex2i(-113, -30);
+    
+    // top-horizontal
+    gl.glVertex2i(-157, 40);
+    gl.glVertex2i(-113, 40);
+    
+    //right-vertical
+    gl.glVertex2i(-115, 40);
+    gl.glVertex2i(-115, -30);
+    //left-vertical
+    gl.glVertex2i(-155, 40);
+    gl.glVertex2i(-155, -30);
+    
+    gl.glEnd();
+    
+    //door-handle
+    gl.glPointSize(7f);
+    gl.glColor3f(1, 1, 0);
+    gl.glBegin(GL2.GL_POINTS);
+    gl.glVertex2i(-125, 10);
+    gl.glEnd();
+    
+    //window 
+    gl.glPointSize(30f);
+    gl.glColor3f(1, 1, 0);
+    gl.glBegin(GL2.GL_POINTS);
+    gl.glVertex2i(-80, 100);
+    gl.glEnd();
+  }
+
+  public void dispose(GLAutoDrawable arg0) {
+    // TODO Auto-generated method stub
+
+  }
+
+  public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3,
+      int arg4) {
+    // TODO Auto-generated method stub
+
+  }
+
+  public static void main(String[] arg)
+  {
+    new m7amad();
+  }
+
+}
